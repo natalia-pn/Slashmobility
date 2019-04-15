@@ -29,7 +29,7 @@ class App extends Component {
   
       this.setState({resultsArray: results})
     })
-    this.setState({resultsArray: []})
+    this.setState({resultsArray: [], favouritesTotal: 0})
   }, 1000);
 
   getSearchName = (e) => {
