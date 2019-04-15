@@ -25,8 +25,7 @@ class App extends Component {
     .then(data => {
       const newData = data.results;
 
-      const results = newData.map((item, index)=>{return {...item, id: index, favourite: false}});
-      console.log(results)
+      const results = newData.map((item, index)=>{return {...item, id: index, favouriteStatus: false, favouriteIcon: 'favorite_border'}});
   
       this.setState({resultsArray: results})
     })
@@ -38,6 +37,30 @@ class App extends Component {
     this.setState({query:nameValue})
 
     this.getSongs();
+  }
+
+  selectFavourites = (e) => {
+    const { resultsArray } = this.state;
+    const buttonValue = e.currentTarget.value;
+
+    const newResultsArray = resultsArray.map(item => {
+      if(item.id === parseInt(buttonValue) && item.favouriteStatus === false) {
+        this.addFavouritesTotal();
+
+        return {
+          ...item, favouriteStatus: true, favouriteIcon: 'favorite'
+        };
+
+      } else if (item.id === parseInt(buttonValue) && item.favouriteStatus === true) {
+        this.deductFavouritesTotal();
+        return {
+          ...item, favouriteStatus: false, favouriteIcon: 'favorite_border'
+        }
+      }
+      return item;
+    });
+    
+    this.setState({resultsArray : newResultsArray});
   }
 
   addFavouritesTotal = () => {
@@ -58,7 +81,7 @@ class App extends Component {
 
   render() {
     const { resultsArray, favouritesTotal } = this.state;
-    const { getSearchName, addFavouritesTotal, deductFavouritesTotal } = this;
+    const { getSearchName, selectFavourites } = this;
     
     return (
       <div className="App">
@@ -72,15 +95,12 @@ class App extends Component {
                 <Route exact path="/" render={()=>(
                   <SongsList    
                   resultsArray={resultsArray}
-                  addFavouritesTotal={addFavouritesTotal}
-                  deductFavouritesTotal={deductFavouritesTotal} />    
+                  selectFavourites={selectFavourites} />      
                 )}/>
                 
                 <Route path="/AlbumsApp" render={()=>(
                 <AlbumsApp 
-                  resultsArray={resultsArray}
-                  addFavouritesTotal={addFavouritesTotal}
-                  deductFavouritesTotal={deductFavouritesTotal} />
+                  resultsArray={resultsArray} />
                 )}/>
               </Fragment>
             </Switch>
