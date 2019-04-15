@@ -23,7 +23,11 @@ class App extends Component {
 
     fetchSongs(query)
     .then(data => {
-      const results = data.results;
+      const newData = data.results;
+
+      const results = newData.map((item, index)=>{return {...item, id: index, favourite: false}});
+      console.log(results)
+  
       this.setState({resultsArray: results})
     })
     this.setState({resultsArray: []})

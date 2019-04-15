@@ -6,18 +6,20 @@ class SongCard extends Component {
       super(props);
 
       this.state = {
-        favouriteStatus: 'false',
+        favouriteStatus: true,
         favouritesIcon: 'favorite_border',
       }
   }
 
   toggleHeart = () => {
-      const { favouriteStatus} = this.state;
-  
-      this.setState({
-        favouriteStatus:!favouriteStatus
-      })
-    }
+    this.setState((prevState) => {
+      console.log(prevState)
+      return {
+        favouriteStatus: !prevState.favouriteStatus,
+      };
+    });
+      console.log(this.state.favouriteStatus)
+  }
   
     selectFavourites = () => {
       const { favouriteStatus} = this.state;
