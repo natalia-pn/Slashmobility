@@ -4,14 +4,15 @@ import AlbumsList from './AlbumsList';
 class AlbumsApp extends Component {
   
   render() {
-    const { resultsArray, selectFavourites } = this.props;
+    const { resultsArray, addFavouritesTotal, deductFavouritesTotal } = this.props;
     
     return (
       <div className="App">
         <main className="Main-section">
           <AlbumsList    
             resultsArray={resultsArray}
-            selectFavourites={selectFavourites} />
+            addFavouritesTotal={addFavouritesTotal}
+            deductFavouritesTotal={deductFavouritesTotal} />
         </main>
       </div>
     );

@@ -100,8 +100,7 @@ class App extends Component {
                 
                 <Route path="/AlbumsApp" render={()=>(
                 <AlbumsApp 
-                  resultsArray={resultsArray}
-                  selectFavourites={selectFavourites} />
+                  resultsArray={resultsArray} />
                 )}/>
               </Fragment>
             </Switch>
