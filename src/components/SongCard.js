@@ -17,7 +17,7 @@ class SongCard extends Component {
               <p className="Song__album">{collectionName}</p>
             </div> 
 
-            <button type="button" className="Favourites__heart" value={id}onClick={selectFavourites}><i className="material-icons">{favouriteIcon}</i></button>
+            <button type="button" className="Favourites__heart" value={id} onClick={selectFavourites}><i className="material-icons">{favouriteIcon}</i></button>
         </li>
       );
     }
@@ -28,6 +28,8 @@ SongCard.propTypes = {
   trackName: PropTypes.string,
   collectionName: PropTypes.string,
   selectFavourites: PropTypes.func,
+  id: PropTypes.number,
+  favouriteIcon: PropTypes.string
 }
 
 export default SongCard;

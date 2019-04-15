@@ -4,17 +4,18 @@ import AlbumCard from './SongCard';
 
 class AlbumsList extends Component {
     render() {
-        const { resultsArray, addFavouritesTotal, deductFavouritesTotal} = this.props;
+        const { resultsArray, selectFavourites } = this.props;
 
         return(
             <ul className="Albums__list">
-                {resultsArray.map((item, index) => {
+                {resultsArray.map(item => {
                     return(
-                        <AlbumCard key={index}
+                        <AlbumCard key={item.id}
+                        id={item.id}
                         image={item.artworkUrl100}
                         collectionName={item.collectionName}
-                        addFavouritesTotal={addFavouritesTotal}
-                        deductFavouritesTotal={deductFavouritesTotal} />
+                        selectFavourites={selectFavourites}
+                        favouriteIcon={item.favouriteIcon}  />
                     )
                 })}
             </ul>
