@@ -10,13 +10,13 @@ class SongsList extends Component {
             <ul className="Songs__list">
                 {resultsArray.map(item => {
                     return(
-                        <SongCard key={item.id}
-                        id={item.id}
+                        <SongCard key={item.trackId}
+                        id={item.trackId}
                         image={item.artworkUrl100}
                         trackName={item.trackName}
                         collectionName={item.collectionName}
                         selectFavourites={selectFavourites} 
-                        favouriteIcon={item.favouriteIcon} />
+                        favouriteStatus={item.favouriteStatus} />
                     )
                 })}
             </ul>

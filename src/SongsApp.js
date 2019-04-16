@@ -1,11 +1,9 @@
-import React, { Component, Fragment } from 'react';
-import { Route, Switch } from 'react-router-dom';
-import { debounce } from 'lodash';
+import React, { Component } from 'react';
+import { debounce  } from 'lodash';
 import Header from './components/Header';
 import './styles/App.scss';
 import { fetchSongs } from './services/ApiRequest';
 import SongsList from './components/SongsList';
-import AlbumsApp from './components/AlbumsApp';
 
 class App extends Component {
   constructor(props) {
@@ -14,7 +12,6 @@ class App extends Component {
     this.state = {
       resultsArray: [],
       query: '',
-      favouritesTotal: 0
     }
   }
 
@@ -25,11 +22,12 @@ class App extends Component {
     .then(data => {
       const newData = data.results;
 
-      const results = newData.map((item, index)=>{return {...item, id: index, favouriteStatus: false, favouriteIcon: 'favorite_border'}});
-  
-      this.setState({resultsArray: results})
+      //Add the property favouriteStatus to newData array:
+      const newResultsArray = newData.map(object => {return {...object, favouriteStatus: false }})
+      this.setState({resultsArray: newResultsArray})
     })
-    this.setState({resultsArray: [], favouritesTotal: 0})
+
+    this.setState({resultsArray: []})
   }, 1000);
 
   getSearchName = (e) => {
@@ -40,70 +38,47 @@ class App extends Component {
   }
 
   selectFavourites = (e) => {
+    console.log('click')
     const { resultsArray } = this.state;
     const buttonValue = e.currentTarget.value;
 
     const newResultsArray = resultsArray.map(item => {
-      if(item.id === parseInt(buttonValue) && item.favouriteStatus === false) {
-        this.addFavouritesTotal();
-
+      if(item.trackId === parseInt(buttonValue) && item.favouriteStatus === false) {
         return {
-          ...item, favouriteStatus: true, favouriteIcon: 'favorite'
+          ...item, favouriteStatus: true
         };
 
-      } else if (item.id === parseInt(buttonValue) && item.favouriteStatus === true) {
-        this.deductFavouritesTotal();
+        } 
+      else if (item.trackId  === parseInt(buttonValue) && item.favouriteStatus === true) {
         return {
-          ...item, favouriteStatus: false, favouriteIcon: 'favorite_border'
+          ...item, favouriteStatus: false
         }
-      }
-      return item;
+      } return item;
+
     });
     
     this.setState({resultsArray : newResultsArray});
   }
 
-  addFavouritesTotal = () => {
-    this.setState(prevState => {
-      return {
-        favouritesTotal: prevState.favouritesTotal + 1
-      }
-    })
-  }
-
-  deductFavouritesTotal = () => {
-    this.setState(prevState => {
-      return {
-        favouritesTotal: prevState.favouritesTotal - 1
-      }
-    })
-  }
-
   render() {
-    const { resultsArray, favouritesTotal } = this.state;
+    const { resultsArray } = this.state;
     const { getSearchName, selectFavourites } = this;
-    
+
+    // Get favourite songs' total:
+    const favouritesTotal = resultsArray.filter(item => item.favouriteStatus === true).length;
+
+
+
     return (
       <div className="App">
         <Header  
-            getSearchName={getSearchName} 
-            favouritesTotal={favouritesTotal} />
+          getSearchName={getSearchName} 
+          favouritesTotal={favouritesTotal} />
 
         <main className="Main-section">
-          <Switch>
-              <Fragment>
-                <Route exact path="/" render={()=>(
-                  <SongsList    
-                  resultsArray={resultsArray}
-                  selectFavourites={selectFavourites} />      
-                )}/>
-                
-                <Route path="/AlbumsApp" render={()=>(
-                <AlbumsApp 
-                  resultsArray={resultsArray} />
-                )}/>
-              </Fragment>
-            </Switch>
+          <SongsList    
+            resultsArray={resultsArray}
+            selectFavourites={selectFavourites} />      
         </main>
       </div>
     );

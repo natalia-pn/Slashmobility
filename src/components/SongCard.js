@@ -5,7 +5,9 @@ class SongCard extends Component {
   
     
     render() {
-      const { image, trackName, collectionName, favouriteIcon, id, selectFavourites } = this.props;
+      const { image, trackName, collectionName, favouriteStatus, id, selectFavourites } = this.props;
+
+      const favouriteIcon = favouriteStatus === true ? 'favorite' : 'favorite_border';
 
       return(
         <li className="Song__item">
@@ -17,7 +19,7 @@ class SongCard extends Component {
               <p className="Song__album">{collectionName}</p>
             </div> 
 
-            <button type="button" className="Favourites__heart" value={id}onClick={selectFavourites}><i className="material-icons">{favouriteIcon}</i></button>
+            <button type="button" className="Favourites__heart" value={id} onClick={selectFavourites}><i className="material-icons">{favouriteIcon}</i></button>
         </li>
       );
     }
