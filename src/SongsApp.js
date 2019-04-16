@@ -37,18 +37,27 @@ class App extends Component {
     this.getSongs();
   }
 
+  
+
   selectFavourites = (e) => {
     const { resultsArray } = this.state;
     const buttonValue = e.currentTarget.value;
 
     const newResultsArray = resultsArray.map(item => {
       if(item.trackId === parseInt(buttonValue) && item.favouriteStatus === false) {
+        localStorage.setItem('trackId', JSON.stringify(item.trackId));
+
+        console.log('add',item.trackId);
+
         return {
           ...item, favouriteStatus: true
         };
 
         } 
       else if (item.trackId  === parseInt(buttonValue) && item.favouriteStatus === true) {
+        localStorage.removeItem('trackId', JSON.stringify(item.trackId));
+        
+        console.log('remove', item.trackId);
         return {
           ...item, favouriteStatus: false
         }
