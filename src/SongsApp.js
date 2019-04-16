@@ -27,7 +27,7 @@ class App extends Component {
       this.setState({resultsArray: newResultsArray})
     })
 
-    this.setState({resultsArray: []})
+    this.setState({query: ''})
   }, 1000);
 
   getSearchName = (e) => {
@@ -38,7 +38,6 @@ class App extends Component {
   }
 
   selectFavourites = (e) => {
-    console.log('click')
     const { resultsArray } = this.state;
     const buttonValue = e.currentTarget.value;
 
@@ -61,7 +60,7 @@ class App extends Component {
   }
 
   render() {
-    const { resultsArray } = this.state;
+    const { resultsArray, query } = this.state;
     const { getSearchName, selectFavourites } = this;
 
     // Get favourite songs' total:
@@ -73,7 +72,8 @@ class App extends Component {
       <div className="App">
         <Header  
           getSearchName={getSearchName} 
-          favouritesTotal={favouritesTotal} />
+          favouritesTotal={favouritesTotal}
+          query={query} />
 
         <main className="Main-section">
           <SongsList    

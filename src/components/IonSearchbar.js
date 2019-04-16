@@ -3,12 +3,12 @@ import PropTypes from "prop-types";
 
 class IonSearchbar extends Component {
     render() {
-        const { getSearchName } = this.props;
+        const { getSearchName, query } = this.props;
 
         return(
             <div className="Search-bar">
                 <label htmlFor="search-field" className="Search-field__label"></label>
-                <input type="text" id="search-field" className="Search-field__input" placeholder="Search" onChange={getSearchName}/>   
+                <input type="text" id="search-field" className="Search-field__input" placeholder="Search" onChange={getSearchName} value={query}/>   
 
                 <i className="material-icons Magnify">search</i>
             </div>

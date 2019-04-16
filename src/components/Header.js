@@ -5,14 +5,15 @@ import PropTypes from "prop-types";
 
 class Header extends Component {
     render() {
-        const { favouritesTotal, getSearchName } = this.props;
+        const { favouritesTotal, getSearchName, query } = this.props;
 
         return(
             <header className="App-header">
                 <div className="Header__content">
                     <i className="material-icons Hand-tapping">touch_app</i>
         
-                    <IonSearchbar getSearchName={getSearchName} />
+                    <IonSearchbar getSearchName={getSearchName}
+                    query={query} />
 
                     <div className="Favourites-counter__container">
                         <i className="material-icons Header__heart">favorite</i>
