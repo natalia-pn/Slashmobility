@@ -1,11 +1,15 @@
 
 .Search-field__input {
+    width: 98px;
     height: 26px;
-    width: 186px;
     background-color: $dark-cyan;
     border: none;
     border-radius: -6px;
     outline: none;
+    @media all and (min-width: 768px) {
+        width: 186px;
+       
+    }
 }
 
 .Search-field__input{

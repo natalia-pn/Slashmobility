@@ -27,9 +27,14 @@
 }
 
 .Menu {
+    font-size: 10px;
     width: 600px;
     display: flex;
     justify-content: flex-end;
+
+    @media all and (min-width: 400px) {
+       font-size: 14px;
+    }
 }
 
 a {
@@ -38,7 +43,10 @@ a {
 
 .Show-songs__link, .Show-albums__link {
     color: $dim-grey;
-    margin-right: 25px;
+    margin-right: 10px;
+    @media all and (min-width: 400px) {
+        margin-right: 25px;
+    }
 }
 
 .Show-songs__link.is-active, .Show-albums__link.is-active {

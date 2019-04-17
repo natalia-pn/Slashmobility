@@ -7,7 +7,7 @@ class SongCard extends Component {
     render() {
       const { image, trackName, collectionName, favouriteStatus, id, selectFavourites } = this.props;
 
-      const favouriteIcon = favouriteStatus === true ? 'favorite' : 'favorite_border';
+      const favouriteIcon = favouriteStatus === true? "favorite" : "favorite_border";
 
       return(
         <li className="Song__item">
@@ -30,6 +30,8 @@ SongCard.propTypes = {
   trackName: PropTypes.string,
   collectionName: PropTypes.string,
   selectFavourites: PropTypes.func,
+  id: PropTypes.number,
+  favouriteSongStatus: PropTypes.bool
 }
 
 export default SongCard;
