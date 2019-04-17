@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from "prop-types";
 
 class SongCard extends Component {
-  
-    
     render() {
       const { image, trackName, collectionName, favouriteStatus, id, selectFavourites } = this.props;
 
@@ -30,6 +28,8 @@ SongCard.propTypes = {
   trackName: PropTypes.string,
   collectionName: PropTypes.string,
   selectFavourites: PropTypes.func,
+  id: PropTypes.number,
+  favouriteStatus: PropTypes.bool
 }
 
 export default SongCard;

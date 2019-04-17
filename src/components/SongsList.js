@@ -25,7 +25,7 @@ class SongsList extends Component {
 }
 
 SongsList.propTypes = {
-    resultsArray: PropTypes.array,
+    resultsArray: PropTypes.array
 }
 
 export default SongsList;

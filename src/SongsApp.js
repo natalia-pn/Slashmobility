@@ -27,15 +27,18 @@ class App extends Component {
     }
   }
 
+  //Use Lodash to debounce the request until search value is introduced:
   getSongs = debounce(() => {
     const { query } = this.state;
 
     fetchSongs(query).then(data => {
       const newData = data.results;
-      // //Add the property favouriteStatus to newData array:
+
+      //Add the property favouriteStatus to newData array:
       const newResultsArray = newData.map(object => {
         return { ...object, favouriteStatus: false };
       });
+
       // Check if there are favourite songs in LS
       this.checkFavouritesLocalStorage(newResultsArray);
     });
@@ -54,12 +57,13 @@ class App extends Component {
     const { resultsArray, favArray } = this.state;
     const buttonValue = e.currentTarget.value;
 
-    //Create a copy of the favArray in the state:
-    let newFavArray = [...this.state.favArray];
+    //Create a copy of the favArray from the state:
+    let newFavArray = [...favArray];
 
     const newResultsArray = resultsArray.map(item => {
       if(item.trackId === parseInt(buttonValue) && item.favouriteStatus === false) {
-        // Add item's ID to that copy of the array:
+
+        // Add item's trackId to that copy of the array:
         newFavArray.push(item.trackId);
        
         return {
@@ -68,7 +72,8 @@ class App extends Component {
         };
         
       } else if(item.trackId === parseInt(buttonValue) && item.favouriteStatus === true) {
-        //Search for the item's index through its ID and remove that position in the array.
+
+        //Search for the item's index through its trackId and remove that position in the array.
         const favIndex = newFavArray.indexOf(item.trackId);
         newFavArray.splice(favIndex, 1);
 
@@ -79,10 +84,11 @@ class App extends Component {
       }
       return item;
     });
+
+    this.setState({ resultsArray: newResultsArray, favArray: newFavArray});
     
     // Save the state favourite's array in LS.
     this.saveFavouritesLS('favSongs', favArray);
-    this.setState({ resultsArray: newResultsArray, favArray: newFavArray});
   };
 
   saveFavouritesLS = (key, value) => {

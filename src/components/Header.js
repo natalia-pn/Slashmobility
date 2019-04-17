@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import IonSearchbar from './IonSearchbar';
 import PropTypes from "prop-types";
 
-
 class Header extends Component {
     render() {
         const { favouritesTotal, getSearchName, query } = this.props;
@@ -27,7 +26,7 @@ class Header extends Component {
 }
 
 Header.propTypes = {
-    favouritesTotal: PropTypes.number,
+    favouritesTotal: PropTypes.number
 }
 
 export default Header;

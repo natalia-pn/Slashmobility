@@ -18,6 +18,7 @@ class IonSearchbar extends Component {
 
 IonSearchbar.propTypes = {
     getSearchName: PropTypes.func,
+    query: PropTypes.string
 }
 
 export default IonSearchbar;
