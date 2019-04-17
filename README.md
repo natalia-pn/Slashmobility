@@ -1,6 +1,13 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Songs search engine
+### By Natalia Pelegero Navarro
 
-## Available Scripts
+This songs search engine is a single page application. When searching by artist, the app returns a list of songs with their album's name and sleeve. It also allows you to save your favourite songs.
+
+This project is part of Slashmobility’s selection process. It has been created with Create React App and data is retrieved from the iTunes API: 'https://itunes.apple.com/search?term=artist'
+
+## Do you want to clone or fork this repository?
+
+Follow official React instructions:
 
 In the project directory, you can run:
 
@@ -43,26 +50,3 @@ You can learn more in the [Create React App documentation](https://facebook.gith
 
 To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
