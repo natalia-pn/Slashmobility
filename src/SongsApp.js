@@ -25,7 +25,10 @@ class App extends Component {
         favArray: savedSongs
       });
     }
+      console.log(savedSongs)
+
   }
+
 
   //Use Lodash to debounce the request until search value is introduced:
   getSongs = debounce(() => {
@@ -65,6 +68,7 @@ class App extends Component {
 
         // Add item's trackId to that copy of the array:
         newFavArray.push(item.trackId);
+         console.log(item.favouriteStatus)
        
         return {
           ...item,
@@ -76,6 +80,7 @@ class App extends Component {
         //Search for the item's index through its trackId and remove that position in the array.
         const favIndex = newFavArray.indexOf(item.trackId);
         newFavArray.splice(favIndex, 1);
+         console.log(item.favouriteStatus)
 
         return {
           ...item,
@@ -87,8 +92,8 @@ class App extends Component {
 
     this.setState({ resultsArray: newResultsArray, favArray: newFavArray});
     
-    // Save the state favourite's array in LS.
-    this.saveFavouritesLS('favSongs', favArray);
+    // Save the favourite's array in LS.
+    this.saveFavouritesLS('favSongs', newFavArray);
   };
 
   saveFavouritesLS = (key, value) => {
@@ -120,6 +125,8 @@ class App extends Component {
     const { getSearchName, selectFavourites } = this;
 
     const favouritesTotal = favArray.length;
+    console.log('favArray',favArray)
+    console.log(resultsArray)
 
     return (
       <div className="App">
