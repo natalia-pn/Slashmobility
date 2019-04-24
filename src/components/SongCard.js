@@ -1,26 +1,32 @@
 import React, { Component } from 'react';
 import PropTypes from "prop-types";
 
+
 class SongCard extends Component {
-    render() {
-      const { image, trackName, collectionName, favouriteStatus, id, selectFavourites } = this.props;
+  
+  addDefaultPicture = (e) => {
+    e.currentTarget.src = "https://upload.wikimedia.org/wikipedia/commons/7/75/No_image_available.png";
+  }
 
-      const favouriteIcon = favouriteStatus === true ? 'favorite' : 'favorite_border';
+  render() {
+    const { image, trackName, collectionName, favouriteStatus, id, selectFavourites } = this.props;
 
-      return(
-        <li className="Song__item">
-            <img className="Song__sleeve" src={image} alt={collectionName}></img>
+    const favouriteIcon = favouriteStatus === true ? 'favorite' : 'favorite_border';
 
-            <div className="Card__info">
-              <p className="Song__title">{trackName}</p>
+    return(
+      <li className="Song__item">
+          <img className="Song__sleeve" src={image} onError={this.addDefaultPicture} alt={collectionName}></img>
 
-              <p className="Song__album">{collectionName}</p>
-            </div> 
+          <div className="Card__info">
+            <p className="Song__title">{trackName}</p>
 
-            <button type="button" className="Favourites__heart" value={id} onClick={selectFavourites}><i className="material-icons">{favouriteIcon}</i></button>
-        </li>
-      );
-    }
+            <p className="Song__album">{collectionName}</p>
+          </div> 
+
+          <button type="button" className="Favourites__heart" value={id} onClick={selectFavourites}><i className="material-icons">{favouriteIcon}</i></button>
+      </li>
+    );
+  }
 }
 
 SongCard.propTypes = {
